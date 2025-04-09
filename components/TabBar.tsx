@@ -2,10 +2,16 @@ import { View, StyleSheet } from "react-native";
 import React from "react";
 import TabBarButton from "./TabButton";
 import { COLORS } from "@/constants/Colors";
+import { LinearGradient } from "expo-linear-gradient";
 
 const TabBar = ({ state, descriptors, navigation }: any) => {
   return (
-    <View style={{ ...styles.tabbar }}>
+    <LinearGradient
+      colors={["#3D3228", "#2E241B"]}
+      start={{ x: 0, y: 0 }}
+      end={{ x: 1, y: 1 }}
+      style={styles.tabbar}
+    >
       {state.routes.map(
         (
           route: { key: string | number; name: string; params: any },
@@ -45,7 +51,7 @@ const TabBar = ({ state, descriptors, navigation }: any) => {
           );
         }
       )}
-    </View>
+    </LinearGradient>
   );
 };
 
@@ -55,7 +61,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    backgroundColor: COLORS.black,
     paddingVertical: 8,
     paddingHorizontal: 4,
     borderRadius: 36,

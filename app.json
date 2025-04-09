@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "jivani-app",
-    "slug": "jivani-app",
+    "name": "Jivani",
+    "slug": "Jivani",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
@@ -26,6 +26,7 @@
     },
     "plugins": [
       "expo-router",
+      "@react-native-voice/voice",
       [
         "expo-splash-screen",
         {

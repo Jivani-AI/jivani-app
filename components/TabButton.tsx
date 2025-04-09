@@ -11,6 +11,7 @@ import Animated, {
   useSharedValue,
   withSpring,
 } from "react-native-reanimated";
+import { COLORS } from "@/constants/Colors";
 
 const getTabIcon = (routeName: string, isActive: boolean) => {
   const iconColor = isActive ? "black" : "white";
@@ -77,7 +78,7 @@ const styles = StyleSheet.create({
     height: 58,
     width: 58,
     borderRadius: 30,
-    backgroundColor: "white",
+    backgroundColor: COLORS.lightBrown,
     justifyContent: "center",
     alignItems: "center",
   },
@@ -87,7 +88,7 @@ const styles = StyleSheet.create({
     borderRadius: 30,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "rgba(255, 255, 255, 0.1)",
+    backgroundColor: "rgba(255, 255, 255, 0.07)",
   },
 });
 

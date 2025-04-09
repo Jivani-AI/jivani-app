@@ -3,7 +3,7 @@ export const Colors = {
     primary: "#D4C1EC",
     secondary: "#A2D2C9",
     accent: "#FF968A",
-    background: "#F9FAFB",
+    background: "#F1EFE7",
     surface: "#F2F4F7",
     textPrimary: "#2F2F2F",
     textSecondary: "#6B7280",
@@ -35,4 +35,5 @@ export const Colors = {
 
 export const COLORS = {
   black: "#121212",
+  lightBrown: "#F1EFE7",
 };

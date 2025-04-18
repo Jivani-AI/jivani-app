@@ -39,10 +39,10 @@ export const useVoiceToText = () => {
 
         silenceTimer.current = setTimeout(() => {
           const timeSinceLastSpeech = Date.now() - lastSpokenAt.current;
-          if (timeSinceLastSpeech >= 1500) {
+          if (timeSinceLastSpeech >= 2000) {
             stopListening(); // 🔥 Stop if silence for 1.5s
           }
-        }, 1600);
+        }, 2000);
       }
     };
 

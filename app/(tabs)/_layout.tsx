@@ -1,14 +1,15 @@
-import { HapticTab } from "@/components/HapticTab";
-import TabBar from "@/components/TabBar";
-import { useThemeColors } from "@/hooks/useThemeColor";
+import { HapticTab } from "../components/HapticTab";
+import TabBar from "../components/TabBar";
+import { useThemeColors } from "@/app/hooks/useThemeColor";
 import { LinearGradient } from "expo-linear-gradient";
 import { Tabs } from "expo-router";
 import React, { useEffect, useState } from "react";
 import { Modal, Pressable, StyleSheet, Text, View, Image } from "react-native";
-import Mic from "../../assets/icons/mic.svg";
-import { useVoiceToText } from "@/hooks/useVoiceToText";
-import VoiceWaveform from "@/components/WaveForm";
-import { CustomText, TextVariants } from "@/components/ui/CustomText";
+import Mic from "../assets/icons/mic.svg";
+import { useVoiceToText } from "@/app/hooks/useVoiceToText";
+import VoiceWaveform from "../components/WaveForm";
+import { CustomText, TextVariants } from "../components/ui/CustomText";
+import { sendCommand } from "@/app/services/apiService";
 
 export default function TabLayout() {
   const { primary, secondary, background } = useThemeColors();
@@ -16,6 +17,13 @@ export default function TabLayout() {
     useVoiceToText();
   const [isModalVisible, setModalVisible] = useState(false);
   const handleMicPress = () => {
+    // sendCommand("Add todo for today as Buy Onions")
+    //   .then((response) => {
+    //     console.log("Command sent successfully:", response);
+    //   })
+    //   .catch((error) => {
+    //     console.error("Error sending command:", error);
+    //   });
     setModalVisible(true);
     startListening();
   };
@@ -23,6 +31,13 @@ export default function TabLayout() {
     if (!isListening && transcript) {
       stopListening();
       setModalVisible(true);
+      sendCommand(transcript)
+        .then((response) => {
+          console.log("Command sent successfully:", response);
+        })
+        .catch((error) => {
+          console.error("Error sending command:", error);
+        });
     }
   }, [isListening, transcript]);
   return (
@@ -107,7 +122,7 @@ export default function TabLayout() {
                 fontSize={18}
                 variant={TextVariants.GROTESK_REGULAR}
               >
-                Say the word, I’ll make it happen!
+                Say the word, I'll make it happen!
               </CustomText>
             </View>
 

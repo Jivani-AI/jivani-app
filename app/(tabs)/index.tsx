@@ -9,25 +9,25 @@ import {
   Animated,
   Image,
 } from "react-native";
-import { useThemeColors } from "@/hooks/useThemeColor";
-import { ThemedView } from "@/components/ThemedView";
+import { ThemeColors, useThemeColors } from "@/app/hooks/useThemeColor";
+import { ThemedView } from "../components/ThemedView";
 import { LineChart } from "react-native-chart-kit";
-import { CustomText, TextVariants } from "@/components/ui/CustomText";
+import { CustomText, TextVariants } from "../components/ui/CustomText";
 import {
   PiggyBank,
   Target,
   CheckSquare,
   BookOpenCheck,
 } from "lucide-react-native";
-import WeekCalendarStrip from "@/components/CalenderStrips";
-import { HelloWave } from "@/components/HelloWave";
-import Male from "../../assets/images/male.png";
-import Female from "../../assets/images/female.png";
+import WeekCalendarStrip from "../components/CalenderStrips";
+import { HelloWave } from "../components/HelloWave";
+import Male from "../assets/images/male.png";
+import Female from "../assets/images/female.png";
 
 const screenWidth = Dimensions.get("window").width;
 
 export default function HomeScreen() {
-  const { primary } = useThemeColors();
+  const themeColors: ThemeColors = useThemeColors();
 
   const fadeAnim = useRef(new Animated.Value(0)).current;
   const waveAnim = useRef(new Animated.Value(0)).current;
@@ -63,7 +63,7 @@ export default function HomeScreen() {
 
   const StatCard = ({ title, value, subtext, Icon, bgColor, progress }) => (
     <View style={[styles.card, { backgroundColor: bgColor }]}>
-      <Icon color="#342B20" size={24} />
+      <Icon color={themeColors.primary} size={24} />
       <Text style={styles.title}>{title}</Text>
       <Text style={styles.value}>{value}</Text>
       <Text style={styles.subtext}>{subtext}</Text>
@@ -72,6 +72,244 @@ export default function HomeScreen() {
       </View>
     </View>
   );
+
+  const styles = StyleSheet.create({
+    inner: {
+      padding: 16,
+      paddingBottom: 100,
+    },
+    greetingContainer: {
+      // marginBottom: 16,
+    },
+    greetingTextWrapper: {
+      backgroundColor: themeColors.background,
+      padding: 20,
+      borderRadius: 18,
+      shadowColor: themeColors.shadow,
+      shadowOffset: { width: 0, height: 3 },
+      shadowOpacity: 0.1,
+      shadowRadius: 6,
+      elevation: 3,
+    },
+    greetingTitle: {
+      marginBottom: 4,
+    },
+    greetingRow: {
+      flexDirection: "row",
+      alignItems: "center",
+    },
+    greetingName: {
+      marginRight: 8,
+    },
+    emojiWave: {
+      fontSize: 26,
+      marginLeft: 6,
+    },
+    greetingSub: {
+      marginTop: 6,
+    },
+    sectionHeader: {
+      fontSize: 22,
+      fontWeight: "bold",
+      color: themeColors.primary,
+      marginVertical: 12,
+    },
+    cardStrip: {
+      flexDirection: "row",
+      justifyContent: "space-between",
+      marginVertical: 12,
+    },
+    calendarDay: {
+      padding: 10,
+      borderRadius: 12,
+      backgroundColor: themeColors.cardBackground,
+      flex: 1,
+      marginHorizontal: 4,
+      alignItems: "center",
+    },
+    activeDay: {
+      backgroundColor: themeColors.accent,
+    },
+    calendarDayText: {
+      color: themeColors.primary,
+      fontWeight: "600",
+    },
+    statsRow: {
+      flexDirection: "row",
+      justifyContent: "space-between",
+      marginVertical: 12,
+    },
+    statsCard: {
+      padding: 16,
+      borderRadius: 16,
+      width: screenWidth / 3.3,
+      shadowColor: themeColors.shadow,
+      shadowOffset: { width: 0, height: 2 },
+      shadowOpacity: 0.1,
+      shadowRadius: 4,
+      elevation: 2,
+      alignItems: "center",
+    },
+    statsIcon: {
+      fontSize: 22,
+      marginBottom: 6,
+    },
+    statsTitle: {
+      color: themeColors.primary,
+      fontWeight: "600",
+      marginBottom: 4,
+      fontSize: 14,
+    },
+    statsValue: {
+      fontSize: 20,
+      fontWeight: "bold",
+      color: themeColors.primary,
+    },
+    statsSubtext: {
+      fontSize: 12,
+      color: themeColors.textSecondary,
+      marginTop: 4,
+    },
+
+    chartContainer: {
+      marginVertical: 16,
+      backgroundColor: themeColors.cardBackground,
+      borderRadius: 16,
+      padding: 12,
+      shadowColor: themeColors.shadow,
+      shadowOffset: { width: 0, height: 3 },
+      shadowOpacity: 0.1,
+      shadowRadius: 6,
+      elevation: 4,
+    },
+
+    dummyChart: {
+      height: 140,
+      backgroundColor: themeColors.cardBackground,
+      borderRadius: 12,
+    },
+    taskItem: {
+      padding: 10,
+      backgroundColor: themeColors.background,
+      borderRadius: 10,
+      marginVertical: 4,
+    },
+    taskText: {
+      color: themeColors.primary,
+    },
+    heatmapContainer: {
+      flexDirection: "row",
+      flexWrap: "wrap",
+      gap: 6,
+      marginVertical: 12,
+    },
+    heatmapBlock: {
+      width: 22,
+      height: 22,
+      borderRadius: 4,
+    },
+    quickAddRow: {
+      flexDirection: "row",
+      justifyContent: "space-around",
+      marginVertical: 12,
+    },
+    quickAddButton: {
+      backgroundColor: themeColors.quickAddBackground,
+      paddingHorizontal: 14,
+      paddingVertical: 10,
+      borderRadius: 10,
+    },
+    quickAddText: {
+      color: themeColors.primary,
+      fontWeight: "600",
+    },
+    quoteCard: {
+      marginTop: 20,
+      backgroundColor: themeColors.cardBackground,
+      padding: 16,
+      borderRadius: 16,
+      shadowColor: themeColors.shadow,
+      shadowOffset: { width: 0, height: 2 },
+      shadowOpacity: 0.1,
+      shadowRadius: 4,
+      elevation: 2,
+    },
+    quoteText: {
+      fontStyle: "italic",
+      color: themeColors.secondary,
+      marginBottom: 8,
+      fontSize: 16,
+      textAlign: "center",
+    },
+    quoteAuthor: {
+      color: themeColors.primary,
+      fontWeight: "bold",
+      textAlign: "right",
+    },
+    cardGrid: {
+      flexDirection: "row",
+      flexWrap: "wrap",
+      justifyContent: "space-between",
+      gap: 12,
+      padding: 8,
+    },
+    card: {
+      width: "48%",
+      borderRadius: 16,
+      padding: 16,
+      borderWidth: 0.5,
+      borderColor: themeColors.border,
+      shadowColor: "#000",
+      shadowOpacity: 0.05,
+      shadowOffset: { width: 0, height: 1 },
+      shadowRadius: 4,
+    },
+    title: {
+      fontSize: 14,
+      fontWeight: "600",
+      marginTop: 8,
+      color: themeColors.primary,
+    },
+    value: {
+      fontSize: 20,
+      fontWeight: "700",
+      marginTop: 4,
+      color: themeColors.primary,
+    },
+    subtext: {
+      fontSize: 12,
+      color: themeColors.textSecondary,
+      marginTop: 2,
+    },
+    progressBar: {
+      height: 6,
+      backgroundColor: themeColors.progressBackground,
+      borderRadius: 3,
+      marginTop: 10,
+    },
+    progressFill: {
+      height: 6,
+      backgroundColor: themeColors.primary,
+      borderRadius: 3,
+    },
+    avatarWrapper: {
+      backgroundColor: themeColors.background,
+      borderRadius: 50,
+      borderWidth: 1,
+      borderColor: themeColors.quickAddBackground,
+      padding: 3,
+      shadowColor: themeColors.shadow,
+      shadowOffset: { width: 0, height: 3 },
+      shadowOpacity: 0.1,
+      shadowRadius: 6,
+      elevation: 4,
+    },
+    avatar: {
+      width: 48,
+      height: 48,
+      borderRadius: 24,
+    },
+  });
 
   return (
     <ThemedView>
@@ -94,7 +332,7 @@ export default function HomeScreen() {
                 <CustomText
                   style={styles.greetingTitle}
                   fontSize={22}
-                  color="#7A6B47"
+                  color={themeColors.secondary}
                   variant={TextVariants.GROTESK_MEDIUM}
                 >
                   Good Morning,
@@ -103,17 +341,17 @@ export default function HomeScreen() {
                   <CustomText
                     style={styles.greetingName}
                     fontSize={28}
-                    color="#342B20"
+                    color={themeColors.primary}
                     variant={TextVariants.GROTESK_BOLD}
                   >
-                    Saurabh
+                    Chaitravi
                   </CustomText>
                   <HelloWave />
                 </View>
               </View>
               <View style={styles.avatarWrapper}>
                 <Image
-                  source={Male}
+                  source={Female}
                   style={{
                     width: 64,
                     height: 64,
@@ -125,7 +363,7 @@ export default function HomeScreen() {
             <CustomText
               style={styles.greetingSub}
               fontSize={14}
-              color="#8E8268"
+              color={themeColors.textAccent}
               variant={TextVariants.INTER_ITALIC}
             >
               It's a fresh new day to grow and glow 🌞
@@ -147,7 +385,7 @@ export default function HomeScreen() {
             value="₹1,250"
             subtext="Spent: ₹750 / ₹2,000"
             Icon={PiggyBank}
-            bgColor="#FCE8E6"
+            bgColor={themeColors.financeCardBackground}
             progress={37.5}
           />
           <StatCard
@@ -155,7 +393,7 @@ export default function HomeScreen() {
             value="5 / 8"
             subtext="Most active: Health"
             Icon={Target}
-            bgColor="#E4F7EC"
+            bgColor={themeColors.goalsCardBackground}
             progress={62.5}
           />
           <StatCard
@@ -163,7 +401,7 @@ export default function HomeScreen() {
             value="3 Today"
             subtext="2 Done"
             Icon={CheckSquare}
-            bgColor="#E3F2FD"
+            bgColor={themeColors.todosCardBackground}
             progress={66}
           />
           <StatCard
@@ -171,7 +409,7 @@ export default function HomeScreen() {
             value="4 Topics"
             subtext="This week"
             Icon={BookOpenCheck}
-            bgColor="#FFF3D9"
+            bgColor={themeColors.learningsCardBackground}
             progress={80}
           />
         </View>
@@ -180,7 +418,7 @@ export default function HomeScreen() {
           <CustomText
             style={styles.sectionHeader}
             fontSize={20}
-            color="#342B20"
+            color={themeColors.primary}
             variant={TextVariants.GROTESK_BOLD}
           >
             Progress Graph
@@ -198,18 +436,19 @@ export default function HomeScreen() {
             width={screenWidth - 64}
             height={220}
             chartConfig={{
-              backgroundGradientFrom: "#FFFDF7",
-              backgroundGradientTo: "#F1EFE7",
+              backgroundGradientFrom: themeColors.cardBackground,
+              backgroundGradientTo: themeColors.background,
               decimalPlaces: 0,
-              color: (opacity = 1) => `rgba(52, 43, 32, ${opacity})`,
-              labelColor: () => "#7A6B47",
+              color: (opacity = 1) =>
+                `rgba(${themeColors.primary}, ${opacity})`,
+              labelColor: () => themeColors.secondary,
               style: {
                 borderRadius: 16,
               },
               propsForDots: {
                 r: "6",
                 strokeWidth: "2",
-                stroke: "#C3A77D",
+                stroke: themeColors.accent,
               },
             }}
             bezier
@@ -277,239 +516,3 @@ export default function HomeScreen() {
     </ThemedView>
   );
 }
-
-const styles = StyleSheet.create({
-  inner: {
-    padding: 16,
-    paddingBottom: 100,
-  },
-  greetingContainer: {
-    // marginBottom: 16,
-  },
-  greetingTextWrapper: {
-    backgroundColor: "#F1EFE7",
-    padding: 20,
-    borderRadius: 18,
-    shadowColor: "#3A3228",
-    shadowOffset: { width: 0, height: 3 },
-    shadowOpacity: 0.1,
-    shadowRadius: 6,
-    elevation: 3,
-  },
-  greetingTitle: {
-    marginBottom: 4,
-  },
-  greetingRow: {
-    flexDirection: "row",
-    alignItems: "center",
-  },
-  greetingName: {
-    marginRight: 8,
-  },
-  emojiWave: {
-    fontSize: 26,
-    marginLeft: 6,
-  },
-  greetingSub: {
-    marginTop: 6,
-  },
-  sectionHeader: {
-    fontSize: 22,
-    fontWeight: "bold",
-    color: "#342B20",
-    marginVertical: 12,
-  },
-  cardStrip: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    marginVertical: 12,
-  },
-  calendarDay: {
-    padding: 10,
-    borderRadius: 12,
-    backgroundColor: "#E8E3D4",
-    flex: 1,
-    marginHorizontal: 4,
-    alignItems: "center",
-  },
-  activeDay: {
-    backgroundColor: "#C3A77D",
-  },
-  calendarDayText: {
-    color: "#342B20",
-    fontWeight: "600",
-  },
-  statsRow: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    marginVertical: 12,
-  },
-  statsCard: {
-    padding: 16,
-    borderRadius: 16,
-    width: screenWidth / 3.3,
-    shadowColor: "#3A3228",
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-    elevation: 2,
-    alignItems: "center",
-  },
-  statsIcon: {
-    fontSize: 22,
-    marginBottom: 6,
-  },
-  statsTitle: {
-    color: "#342B20",
-    fontWeight: "600",
-    marginBottom: 4,
-    fontSize: 14,
-  },
-  statsValue: {
-    fontSize: 20,
-    fontWeight: "bold",
-    color: "#342B20",
-  },
-  statsSubtext: {
-    fontSize: 12,
-    color: "#6B5E48",
-    marginTop: 4,
-  },
-
-  chartContainer: {
-    marginVertical: 16,
-    backgroundColor: "#FFFDF7",
-    borderRadius: 16,
-    padding: 12,
-    shadowColor: "#3A3228",
-    shadowOffset: { width: 0, height: 3 },
-    shadowOpacity: 0.1,
-    shadowRadius: 6,
-    elevation: 4,
-  },
-
-  dummyChart: {
-    height: 140,
-    backgroundColor: "#EFE9DB",
-    borderRadius: 12,
-  },
-  taskItem: {
-    padding: 10,
-    backgroundColor: "#F1EFE7",
-    borderRadius: 10,
-    marginVertical: 4,
-  },
-  taskText: {
-    color: "#342B20",
-  },
-  heatmapContainer: {
-    flexDirection: "row",
-    flexWrap: "wrap",
-    gap: 6,
-    marginVertical: 12,
-  },
-  heatmapBlock: {
-    width: 22,
-    height: 22,
-    borderRadius: 4,
-  },
-  quickAddRow: {
-    flexDirection: "row",
-    justifyContent: "space-around",
-    marginVertical: 12,
-  },
-  quickAddButton: {
-    backgroundColor: "#D7C4A3",
-    paddingHorizontal: 14,
-    paddingVertical: 10,
-    borderRadius: 10,
-  },
-  quickAddText: {
-    color: "#342B20",
-    fontWeight: "600",
-  },
-  quoteCard: {
-    marginTop: 20,
-    backgroundColor: "#FFFDF7",
-    padding: 16,
-    borderRadius: 16,
-    shadowColor: "#3A3228",
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-    elevation: 2,
-  },
-  quoteText: {
-    fontStyle: "italic",
-    color: "#7A6B47",
-    marginBottom: 8,
-    fontSize: 16,
-    textAlign: "center",
-  },
-  quoteAuthor: {
-    color: "#342B20",
-    fontWeight: "bold",
-    textAlign: "right",
-  },
-  cardGrid: {
-    flexDirection: "row",
-    flexWrap: "wrap",
-    justifyContent: "space-between",
-    gap: 12,
-    padding: 8,
-  },
-  card: {
-    width: "48%",
-    borderRadius: 16,
-    padding: 16,
-    shadowColor: "#000",
-    shadowOpacity: 0.05,
-    shadowOffset: { width: 0, height: 1 },
-    shadowRadius: 4,
-  },
-  title: {
-    fontSize: 14,
-    fontWeight: "600",
-    marginTop: 8,
-    color: "#342B20",
-  },
-  value: {
-    fontSize: 20,
-    fontWeight: "700",
-    marginTop: 4,
-    color: "#342B20",
-  },
-  subtext: {
-    fontSize: 12,
-    color: "#615E56",
-    marginTop: 2,
-  },
-  progressBar: {
-    height: 6,
-    backgroundColor: "#ddd",
-    borderRadius: 3,
-    marginTop: 10,
-  },
-  progressFill: {
-    height: 6,
-    backgroundColor: "#342B20",
-    borderRadius: 3,
-  },
-  avatarWrapper: {
-    backgroundColor: "#F1EFE7",
-    borderRadius: 50,
-    borderWidth: 1,
-    borderColor: "#D7C4A3",
-    padding: 3,
-    shadowColor: "#3A3228",
-    shadowOffset: { width: 0, height: 3 },
-    shadowOpacity: 0.1,
-    shadowRadius: 6,
-    elevation: 4,
-  },
-  avatar: {
-    width: 48,
-    height: 48,
-    borderRadius: 24,
-  },
-});

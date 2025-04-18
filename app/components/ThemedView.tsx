@@ -1,6 +1,6 @@
 import { SafeAreaView, View } from "react-native";
 
-import { useThemeColors } from "@/hooks/useThemeColor";
+import { useThemeColors } from "@/app/hooks/useThemeColor";
 import { LinearGradient } from "expo-linear-gradient";
 
 export function ThemedView({ style, ...otherProps }: any) {

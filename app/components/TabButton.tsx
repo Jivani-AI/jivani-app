@@ -11,7 +11,7 @@ import Animated, {
   useSharedValue,
   withSpring,
 } from "react-native-reanimated";
-import { COLORS } from "@/constants/Colors";
+import { COLORS } from "@/app/constants/Colors";
 
 const getTabIcon = (routeName: string, isActive: boolean) => {
   const iconColor = isActive ? "black" : "white";

@@ -1,7 +1,7 @@
 // get text in different fonts and font weights
 import { Text } from "react-native";
 
-import { useThemeColors } from "@/hooks/useThemeColor";
+import { useThemeColors } from "@/app/hooks/useThemeColor";
 
 export enum TextVariants {
   "GROTESK_EXTRA_BOLD" = "GROTESK_EXTRA_BOLD",

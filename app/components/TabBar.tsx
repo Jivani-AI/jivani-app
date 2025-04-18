@@ -1,7 +1,7 @@
 import { View, StyleSheet } from "react-native";
 import React from "react";
 import TabBarButton from "./TabButton";
-import { COLORS } from "@/constants/Colors";
+import { COLORS } from "@/app/constants/Colors";
 import { LinearGradient } from "expo-linear-gradient";
 
 const TabBar = ({ state, descriptors, navigation }: any) => {

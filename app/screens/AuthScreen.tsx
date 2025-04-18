@@ -16,10 +16,11 @@ import Toast from "react-native-toast-message";
 const AuthScreen = () => {
   const [isSignup, setIsSignup] = useState(false);
   const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const { login, signup } = useAuth();
 
-  const handleAuth = () => {
+  const handleAuth = async () => {
     if (!email || !password) {
       Toast.show({
         type: "error",
@@ -31,17 +32,21 @@ const AuthScreen = () => {
     }
 
     if (isSignup) {
-      Toast.show({
-        type: "success",
-        text1: "Welcome to the Jivi Club !! ✅",
-        text2: "Please go ahead and Login 🚀🚀🚀",
-        position: "bottom",
-      });
-      setIsSignup(false);
       setEmail("");
       setPassword("");
+      setName("");
 
-      //   signup(email, password);
+      const data = await signup(email, password, name);
+
+      if(data != null){
+        setIsSignup(false);
+        Toast.show({
+          type: "success",
+          text1: "Welcome to the Jivi Club !! ✅",
+          text2: "Please go ahead and Login 🚀🚀🚀",
+          position: "bottom",
+        });
+      }
     } else {
       login(email, password);
     }
@@ -90,6 +95,17 @@ const AuthScreen = () => {
           autoCapitalize="none"
           keyboardType="email-address"
         />
+
+        {isSignup && (
+          <TextInput
+            placeholder="Name"
+            placeholderTextColor="#999"
+            style={styles.input}
+            value={name}
+            onChangeText={setName}
+            autoCapitalize="words"
+          />
+        )}
 
         <TextInput
           placeholder="Password"

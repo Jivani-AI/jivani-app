@@ -10,12 +10,14 @@ import { useVoiceToText } from "@/app/hooks/useVoiceToText";
 import VoiceWaveform from "../components/WaveForm";
 import { CustomText, TextVariants } from "../components/ui/CustomText";
 import { sendCommand } from "@/app/services/apiService";
+import { useRouter } from "expo-router";
 
 export default function TabLayout() {
   const { primary, secondary, background } = useThemeColors();
   const { startListening, isListening, transcript, stopListening } =
     useVoiceToText();
   const [isModalVisible, setModalVisible] = useState(false);
+  const router = useRouter();
   const handleMicPress = () => {
     // sendCommand("Add todo for today as Buy Onions")
     //   .then((response) => {
@@ -34,6 +36,7 @@ export default function TabLayout() {
       sendCommand(transcript)
         .then((response) => {
           console.log("Command sent successfully:", response);
+          router.push("/todos")
         })
         .catch((error) => {
           console.error("Error sending command:", error);
